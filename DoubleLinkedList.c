@@ -1,20 +1,49 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-struct list;
-struct node;
+struct List;
+struct Node;
 
-typedef struct node {
+typedef struct Node {
 	int element;
-	struct node *next;
-	struct node *previous;
+	struct Node *next;
+	struct Node *previous;
+} Node;
 
-} node;
+typedef struct List {
+	struct Node *firstNode;
+	struct Node *lastNode;
+} List;
 
-typedef struct list {
-	struct node *firstNode;
-	struct node *lastNode;
-} list;
+add_to_front(int element, List *list) {
+	Node *node = malloc(sizeof(Node));
+	node->element = element;
+	if (list->firstNode == null) {
+		list->firstNode = node;
+		list->lastNode = node;
+	}
+	else {
+		node->next = list->firstNode;
+		list->firstNode = node;
+	}
+	list -> firstNode;
+}
 
+add_to_back(int element, List *list) {
+	Node *node = malloc(sizeof(Node));
+	node->element = element;
 
+	if (list->firstNode == null) {
+		list->firstNode = node;
+		list->lastNode = node;
+	}
+	else {
+		list->lastNode->next = node;
+		node.previous = list->lastNode;
+		list->lastNode = node;
+	}
+}
 
+remove_from_front
+remove_from_back
+transfer
