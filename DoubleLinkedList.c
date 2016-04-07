@@ -56,7 +56,7 @@ int remove_from_front(List *list) {
   }
 
   Node *oldFirst = list->firstNode;
-  int *value = oldFirst->element;
+  int value = oldFirst->element;
   list->firstNode = list->firstNode->next;
   free(oldFirst);
   return value;
@@ -65,7 +65,7 @@ int remove_from_front(List *list) {
 int remove_from_back(List *list) {
 
   if (list->firstNode == NULL) {
-    return NULL;
+    return -1;
   }
 
   return 1;
@@ -75,7 +75,9 @@ void transfer() {
 
 }
 
-void main() {
+int main() {
+  printf("it compiles");
+  return -1;
   /*
   List list = {null, null};
   add_to_front(list, 1);
