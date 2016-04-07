@@ -22,7 +22,7 @@ int remove_from_back(List *list);
 void transfer();
 
 void add_to_front(int element, List *list) {
-  Node *node = malloc(sizeof(Node));
+  struct Node *node = malloc(sizeof(struct Node));
   node->element = element;
   if (list->firstNode == NULL) {
     list->firstNode = node;
@@ -35,7 +35,7 @@ void add_to_front(int element, List *list) {
 }
 
 void add_to_back(int element, List *list) {
-  Node *node = malloc(sizeof(Node));
+  struct Node *node = malloc(sizeof(struct Node));
   node->element = element;
 
   if (list->firstNode == NULL) {
@@ -75,14 +75,24 @@ void transfer() {
 
 }
 
+void destroy_node(struct Node *node) {  
+  //free(node->element);
+  free(node->next);
+  free(node->previous);
+  
+  free(node);
+}
+
 int main() {
-  printf("it compiles");
-  return -1;
   /*
-  List list = {null, null};
-  add_to_front(list, 1);
-  add_to_back(list, 2);
+  List *list = malloc(sizeof(List));
+  list->firstNode = NULL;
+  list->lastNode = NULL;
+  
+  add_to_front(&list, 1);
+  add_to_back(&list, 2);
 
   printf("first: " + list->element);
-  printf("second: " + list->next->element);*/
+  printf("second: " + list->next->element);
+  */
 }
