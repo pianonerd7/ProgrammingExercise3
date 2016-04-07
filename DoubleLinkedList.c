@@ -24,7 +24,7 @@ void transfer();
 void add_to_front(int element, List *list) {
   Node *node = malloc(sizeof(Node));
   node->element = element;
-  if (list->firstNode == null) {
+  if (list->firstNode == NULL) {
     list->firstNode = node;
     list->lastNode = node;
   }
@@ -32,32 +32,31 @@ void add_to_front(int element, List *list) {
     node->next = list->firstNode;
     list->firstNode = node;
   }
-  list -> firstNode;
 }
 
 void add_to_back(int element, List *list) {
   Node *node = malloc(sizeof(Node));
   node->element = element;
 
-  if (list->firstNode == null) {
+  if (list->firstNode == NULL) {
     list->firstNode = node;
     list->lastNode = node;
   }
   else {
     list->lastNode->next = node;
-    node.previous = list->lastNode;
+    node->previous = list->lastNode;
     list->lastNode = node;
   }
 }
 
 int remove_from_front(List *list) {
 
-  if (list->firstNode == null) {
-    return null;
+  if (list->firstNode == NULL) {
+    return -1;
   }
 
-  Node oldFirst = list->firstNode;
-  int value = oldFirst->value;
+  Node *oldFirst = list->firstNode;
+  int *value = oldFirst->element;
   list->firstNode = list->firstNode->next;
   free(oldFirst);
   return value;
@@ -65,8 +64,8 @@ int remove_from_front(List *list) {
 
 int remove_from_back(List *list) {
 
-  if (list->firstNode == null) {
-    return null;
+  if (list->firstNode == NULL) {
+    return NULL;
   }
 
   return 1;
