@@ -58,7 +58,11 @@ int remove_from_front(List *list) {
   Node *oldFirst = list->firstNode;
   int value = oldFirst->element;
   list->firstNode = list->firstNode->next;
+  
+  free(oldFirst->next);
+  free(oldFirst->previous);
   free(oldFirst);
+  
   return value;
 }
 
@@ -75,16 +79,8 @@ void transfer() {
 
 }
 
-void destroy_node(struct Node *node) {  
-  //free(node->element);
-  free(node->next);
-  free(node->previous);
-  
-  free(node);
-}
-
 int main() {
-  /*
+  
   List *list = malloc(sizeof(List));
   list->firstNode = NULL;
   list->lastNode = NULL;
@@ -94,5 +90,5 @@ int main() {
 
   printf("first: " + list->element);
   printf("second: " + list->next->element);
-  */
+  
 }
