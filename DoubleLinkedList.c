@@ -85,10 +85,12 @@ int main() {
   list->firstNode = NULL;
   list->lastNode = NULL;
   
-  add_to_front(&list, 1);
-  add_to_back(&list, 2);
+  add_to_front(1, list);
+  add_to_back(2, list);
 
-  printf("first: " + list->element);
-  printf("second: " + list->next->element);
+  //printf("first: ");
+  printf((&(list->firstNode)->element));
+  //printf("\n");
+  //printf("second: " + list->firstNode->next->element);
   
 }
