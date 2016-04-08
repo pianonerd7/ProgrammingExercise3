@@ -59,8 +59,8 @@ int remove_from_front(List *list) {
   int value = oldFirst->element;
   list->firstNode = list->firstNode->next;
   
-  free(oldFirst->next);
-  free(oldFirst->previous);
+  //printf("in fxn %d \n", list->firstNode->element);
+  
   free(oldFirst);
   
   return value;
@@ -71,8 +71,14 @@ int remove_from_back(List *list) {
   if (list->firstNode == NULL) {
     return -1;
   }
+  
+  Node *oldLast = list->lastNode;
+  int value = oldLast->element;
+  list->lastNode = list->lastNode->previous;
+  
+  free(oldLast);
 
-  return 1;
+  return value;
 }
 
 void transfer() {
@@ -86,11 +92,14 @@ int main() {
   list->lastNode = NULL;
   
   add_to_front(1, list);
-  add_to_back(2, list);
-
-  //printf("first: ");
-  printf((&(list->firstNode)->element));
-  //printf("\n");
-  //printf("second: " + list->firstNode->next->element);
+  add_to_back(2, list); 
   
+  printf("%d \n", list->firstNode->element);
+  printf("%d \n", list->firstNode->next->element);
+  
+  printf("removing... \n");
+  
+  remove_from_front(list);
+  
+  printf("%d \n", list->firstNode->element);
 }
