@@ -81,7 +81,7 @@ int remove_from_back(List *list) {
   return value;
 }
 
-void transfer() {
+void transfer(int[] arr1, int[] arr2, int arrLength, fxn1, fxn2) {
 
 }
 
