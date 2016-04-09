@@ -59,10 +59,7 @@ int remove_from_front(List *list) {
   int value = oldFirst->element;
   list->firstNode = list->firstNode->next;
   
-  //printf("in fxn %d \n", list->firstNode->element);
-  
   free(oldFirst);
-  
   return value;
 }
 
@@ -72,55 +69,75 @@ int remove_from_back(List *list) {
     return -1;
   }
   
+  int oneElement = 0;
+  if (list->lastNode->previous == NULL) {
+  	oneElement = 1;
+  }
+
   Node *oldLast = list->lastNode;
   int value = oldLast->element;
   list->lastNode = list->lastNode->previous;
   
   free(oldLast);
-
+  
+  if (oneElement) {
+  	free(list);
+  	printf("SET TO NULL\n");
+  }
+  
   return value;
 }
 
 void transfer(int *arr1, int *arr2, int arrLength, void (*insertFunction)(int, List *), int (*removeFunction)(List *)) {
+	
 	List *newList = malloc(sizeof(List));
 	
-	int i, j;
-	
+	int i;
 	for (i = 0; i < arrLength; i++) {
 		insertFunction(arr1[i], newList);
 	}
 	
+	
 	int index = 0;
-	while (newList->firstNode != NULL) {
-		arr2[index] = removeFunction(newList);
-		index++; 
+	while (newList != NULL) {
+	printf("safe1\n");
+		//arr2[index] = removeFunction(newList);
+		//printf("%d \n", arr2[index]);
+		printf("%d \n", removeFunction(newList));
+		index++;
+		printf("safe2\n");
 	}
 	
-	for (j = 0; j < arrLength; j++) {
-		printf("%d \n", arr2[j]);
-	}
+	/*
+	for (i = 0; i < arrLength; i++) {
+		arr2[i] = removeFunction(newList);
+	} */
+	
+	//free(newList);
 }
 
 int main() {
-	int A[] = {1, 2, 3, 4, 5};
-	int B[5];
+	int i;
+	int arrLength = 5;
 	
-	transfer(A, B, 5, add_to_front, remove_from_front);
-  /*
-  List *list = malloc(sizeof(List));
-  list->firstNode = NULL;
-  list->lastNode = NULL;
-  
-  add_to_front(1, list);
-  add_to_back(2, list); 
-  
-  printf("%d \n", list->firstNode->element);
-  printf("%d \n", list->firstNode->next->element);
-  
-  printf("removing... \n");
-  
-  remove_from_front(list);
-  
-  printf("%d \n", list->firstNode->element);
-  */
+	//int A3[] = {3, 4, 5, 6, 7};
+	//int A4[] = {4, 5, 6, 7, 8};
+	//int B3[5];
+	//int B4[5];
+	
+	/*
+	int A1[] = {1, 2, 3, 4, 5};
+	int B1[5];
+	transfer(A1, B1, arrLength, add_to_front, remove_from_front);
+	for (i = 0; i < arrLength; i++) {
+		printf("%d \n", B1[i]);
+	}*/
+
+	
+	int A2[] = {2, 3, 4, 5, 6};
+	int B2[5];
+	transfer(A2, B2, arrLength, add_to_back, remove_from_back);
+	for (i = 0; i < arrLength; i++) {
+		printf("%d \n", B2[i]);
+	}
 }
