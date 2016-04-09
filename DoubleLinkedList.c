@@ -81,12 +81,33 @@ int remove_from_back(List *list) {
   return value;
 }
 
-void transfer(int[] arr1, int[] arr2, int arrLength, fxn1, fxn2) {
-
+//void transfer(int[] arr1, int[] arr2, int arrLength, void //(*insertFunction)(int, List), int (*removeFunction)(List)) {
+void transfer(int* arr1, int* arr2, int arrLength) {
+	List *newList = malloc(sizeof(List));
+	
+	int i, j;
+	
+	for (i = 0; i < arrLength; i++) {
+		add_to_front(arr1[i], newList);
+	}
+	
+	int index = 0;
+	while (newList->firstNode != NULL) {
+		arr2[index] = remove_from_front(newList);
+		index++; 
+	}
+	
+	for (j = 0; j < arrLength; j++) {
+		printf("%d \n", arr2[j]);
+	}
 }
 
 int main() {
-  
+	int A[] = {1, 2, 3, 4, 5};
+	int B[5];
+	
+	transfer(A, B, 5);
+  /*
   List *list = malloc(sizeof(List));
   list->firstNode = NULL;
   list->lastNode = NULL;
@@ -102,4 +123,5 @@ int main() {
   remove_from_front(list);
   
   printf("%d \n", list->firstNode->element);
+  */
 }
