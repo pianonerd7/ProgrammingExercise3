@@ -87,12 +87,12 @@ void transfer(int *arr1, int *arr2, int arrLength, void (*insertFunction)(int, L
 	int i, j;
 	
 	for (i = 0; i < arrLength; i++) {
-		add_to_front(arr1[i], newList);
+		insertFunction(arr1[i], newList);
 	}
 	
 	int index = 0;
 	while (newList->firstNode != NULL) {
-		arr2[index] = remove_from_front(newList);
+		arr2[index] = removeFunction(newList);
 		index++; 
 	}
 	
