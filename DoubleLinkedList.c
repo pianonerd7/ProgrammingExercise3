@@ -65,9 +65,11 @@ int remove_from_front(List *list) {
   Node *oldFirst = list->firstNode;
   int value = oldFirst->element;
   
-  if (list->lastNode->previous == NULL) {
+  //if (list->firstNode->next == NULL) {
+  if (list->firstNode == list->lastNode) {
   	list->lastNode = NULL;
   	list->firstNode = NULL;
+  	free(oldFirst);
   	return value;
   }
   
@@ -108,15 +110,8 @@ void transfer(int *arr1, int *arr2, int arrLength, void (*insertFunction)(int, L
 	for (i = 0; i < arrLength; i++) {
 		insertFunction(arr1[i], newList);
 	}
-/*
-	for (i = 0; i < arrLength; i++) {
-		printf("hello 1\n");
-		arr2[i] = removeFunction(newList);
-		printf("%d \n", arr2[i]);
-				printf("bye 1 \n");
-	}  */
 	
-	/*
+	
 	printf("start\n");
 	printf("%d \n", newList->firstNode->element);
 	printf("%d \n", newList->firstNode->next->element);
@@ -130,14 +125,13 @@ void transfer(int *arr1, int *arr2, int arrLength, void (*insertFunction)(int, L
 	printf("%d \n", newList->lastNode->previous->previous->previous->element);
 	printf("%d \n", newList->lastNode->previous->previous->previous->previous->element);
 	printf("end \n");
-	*/
 	
 	
 	int index = 0;
 	while (newList->firstNode != NULL) {
+	//printf("enter \n");
 		arr2[index] = removeFunction(newList);
-		printf("%d \n", arr2[index]);
-		//printf("%d \n", removeFunction(newList));
+		//printf("%d \n", arr2[index]);
 		index++;
 		//printf("0k \n");
 	}
@@ -155,9 +149,16 @@ int main() {
 	for (i = 0; i < arrLength; i++) {
 		printf("%d \n", B1[i]);
 	}
-
+	
 	printf("safe \n\n");
-
+	int B2[5];
+	transfer(A1, B2, arrLength, add_to_front, remove_from_front);
+	for (i = 0; i < arrLength; i++) {
+		printf("%d \n", B2[i]);
+	}
+	
+	printf("safe \n\n");
+ /*
 	int A2[] = {2, 3, 4, 5, 6};
 	int B2[5];
 	transfer(A2, B2, arrLength, add_to_back, remove_from_back);
@@ -181,5 +182,5 @@ int main() {
 	transfer(A4, B4, arrLength, add_to_back, remove_from_front);
 	for (i = 0; i < arrLength; i++) {
 		printf("%d \n", B4[i]);
-	} 
+	} */  
 }
