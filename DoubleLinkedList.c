@@ -81,8 +81,7 @@ int remove_from_back(List *list) {
   return value;
 }
 
-//void transfer(int[] arr1, int[] arr2, int arrLength, void //(*insertFunction)(int, List), int (*removeFunction)(List)) {
-void transfer(int* arr1, int* arr2, int arrLength) {
+void transfer(int *arr1, int *arr2, int arrLength, void (*insertFunction)(int, List *), int (*removeFunction)(List *)) {
 	List *newList = malloc(sizeof(List));
 	
 	int i, j;
@@ -106,7 +105,7 @@ int main() {
 	int A[] = {1, 2, 3, 4, 5};
 	int B[5];
 	
-	transfer(A, B, 5);
+	transfer(A, B, 5, add_to_front, remove_from_front);
   /*
   List *list = malloc(sizeof(List));
   list->firstNode = NULL;
