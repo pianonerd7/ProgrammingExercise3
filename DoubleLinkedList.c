@@ -29,6 +29,7 @@ void add_to_front(int element, List *list) {
   	node->previous = NULL;
     list->firstNode = node;
     list->lastNode = node;
+    //printf("add to front last node %d \n", list->lastNode->element);
   }
   else {
   	node->previous = NULL;
@@ -36,6 +37,8 @@ void add_to_front(int element, List *list) {
     node->next = list->firstNode;
     list->firstNode = node;
   }
+  
+  	//printf("add to front last node %d \n", list->lastNode->element);
 }
 
 void add_to_back(int element, List *list) {
@@ -105,13 +108,16 @@ int remove_from_back(List *list) {
 void transfer(int *arr1, int *arr2, int arrLength, void (*insertFunction)(int, List *), int (*removeFunction)(List *)) {
 
 	List *newList = malloc(sizeof(List));
+	newList->firstNode = NULL;
+	newList->lastNode = NULL;
 	
 	int i;
 	for (i = 0; i < arrLength; i++) {
+	//printf("enter %d\n", i);
 		insertFunction(arr1[i], newList);
 	}
 	
-	
+	/*
 	printf("start\n");
 	printf("%d \n", newList->firstNode->element);
 	printf("%d \n", newList->firstNode->next->element);
@@ -125,7 +131,7 @@ void transfer(int *arr1, int *arr2, int arrLength, void (*insertFunction)(int, L
 	printf("%d \n", newList->lastNode->previous->previous->previous->element);
 	printf("%d \n", newList->lastNode->previous->previous->previous->previous->element);
 	printf("end \n");
-	
+	*/
 	
 	int index = 0;
 	while (newList->firstNode != NULL) {
@@ -151,14 +157,8 @@ int main() {
 	}
 	
 	printf("safe \n\n");
-	int B2[5];
-	transfer(A1, B2, arrLength, add_to_front, remove_from_front);
-	for (i = 0; i < arrLength; i++) {
-		printf("%d \n", B2[i]);
-	}
+
 	
-	printf("safe \n\n");
- /*
 	int A2[] = {2, 3, 4, 5, 6};
 	int B2[5];
 	transfer(A2, B2, arrLength, add_to_back, remove_from_back);
@@ -182,5 +182,6 @@ int main() {
 	transfer(A4, B4, arrLength, add_to_back, remove_from_front);
 	for (i = 0; i < arrLength; i++) {
 		printf("%d \n", B4[i]);
-	} */  
+	} 
+	
 }
